@@ -66,7 +66,7 @@ int main()
 			auto result = compute(word);
 
 			// Print output
-			std::cout << "Case: #" << i << ": " << result << std::endl;
+			std::cout << "Case #" << i << ": " << result << std::endl;
 
 		}
 		else
