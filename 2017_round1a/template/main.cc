@@ -19,7 +19,11 @@ namespace CFG
 
 RESULT compute(const CASE & my_case)
 {
-	return (RESULT(my_case));
+	std::string result_string;
+	result_string += "Result for case \"";
+	result_string += my_case;
+	result_string += "\"";
+	return result_string;
 }
 
 CASE read_one_case()
