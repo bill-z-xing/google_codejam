@@ -1,0 +1,29 @@
+Input
+	num_ingred_types, num_packages
+
+	necessary amounts: ingred1, ingred 2
+
+	ingred1: pack1 pack2 ...
+	ingred2: pack1 pack2 ...
+
+Constraints:
+	One pack each ingredient
+	Ingredient in each kit is [90%, 110%] of required
+
+Output: How many servings each kit?
+
+
+Needed: 100 water, 200 oil
+
+Packs:
+	water 190, 340, 200
+		1.9 (2), 3.4, 2.0 (2)
+	oil 500, 600, 100
+		2.6 (0), 3 (0), 0.5 (0)
+
+
+	water: 2 2
+	oil
+
+
+
