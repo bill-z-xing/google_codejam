@@ -7,20 +7,88 @@
 
 typedef std::size_t MY_SIZE;
 
-typedef std::vector<std::string> RESULT;
+
 typedef std::vector<std::string> CASE;
+typedef CASE RESULT;
 
 namespace CFG
 {
-	static const bool verbose = true;
-	static const bool very_verbose = true;
+	static const bool verbose = false;
+	static const bool very_verbose = false;
 }
 
 
-RESULT compute(const CASE & my_case)
+void compute(CASE & my_case)
 {
+	MY_SIZE num_rows = my_case.size();
 
-	return my_case;
+	std::string * first_meaningful_row = nullptr;
+
+	for (MY_SIZE irow = 0; irow < num_rows; ++irow)
+	{
+		auto & row = my_case[irow];
+		MY_SIZE num_cols = row.size();
+		char last_char = '?';
+		char first_meaningful_char = '?';
+		for (MY_SIZE icol = 0; icol < num_cols; ++icol)
+		{
+			char & my_char = row[icol];
+			if (my_char == '?' )
+			{
+				if (last_char != '?')
+				{
+					my_char = last_char;
+				}
+			}
+			else
+			{
+				last_char = my_char;
+				if (first_meaningful_char == '?')
+				{
+					first_meaningful_char = my_char;
+				}
+			}
+		}
+
+		if (first_meaningful_char != '?')
+		{
+			for (char & c : row)
+			{
+				if (c != '?')
+				{
+					break;
+				}
+				c = first_meaningful_char;
+			}
+
+			if (first_meaningful_row == nullptr)
+			{
+				first_meaningful_row = &row;
+			}
+		}
+		else
+		{
+			// Totally empty
+			if (first_meaningful_row != nullptr)
+			{
+				row = *first_meaningful_row;
+			}
+		}
+	}
+
+	for (auto & row : my_case)
+	{
+		if (row.at(0) == '?')
+		{
+			row = *first_meaningful_row;
+		}
+		else
+		{
+			break;
+		}
+	}
+
+
 }
 
 CASE read_one_case()
@@ -82,8 +150,12 @@ int main()
 			}
 		}
 
-		RESULT my_result = compute(my_case);
-		//std::cout << "Case #" << i_case << ": " << my_result << std::endl;
+		compute(my_case);
+		std::cout << "Case #" << i_case << ": " << std::endl;
+		for (const auto & row : my_case)
+		{
+			std::cout << row << std::endl;
+		}
 	}
 
 	return 0;
