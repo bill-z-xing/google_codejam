@@ -6,6 +6,7 @@ Input
 	ingred1: pack1 pack2 ...
 	ingred2: pack1 pack2 ...
 
+
 Constraints:
 	One pack each ingredient
 	Ingredient in each kit is [90%, 110%] of required
@@ -21,9 +22,57 @@ Packs:
 	oil 500, 600, 100
 		2.6 (0), 3 (0), 0.5 (0)
 
+	First: assign servings to each pack
+		water: 2 2
+		oil: 0 0
+	Second: kitify packs from one ingredient's serving marks
 
-	water: 2 2
-	oil
+		for (each in first ingred)
+		{
+			bool success = true;
+			for (each other ingredient)
+			{
+				bool inner_success = try_remove_identical_serving_pack()
+				if (inner_success)
+				{
+					remove;
+					continue to next ingredient
+				}
+				else
+				{
+					success = false
+					break   //failure
+				}
+			}
+
+			if (success)
+			{
+				kit++;
+			}
+		}
+
+
+What if:
+	Req: 1,  Pack 100, Can be 100 servings or 90 servings or 110 servings
+
+
+Packs:
+	water 1, oil 5
+
+	Water packs: 100, 200
+	Oil packs: 100, 200
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

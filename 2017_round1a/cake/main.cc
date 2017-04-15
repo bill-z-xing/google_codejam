@@ -23,6 +23,7 @@ void compute(CASE & my_case)
 	MY_SIZE num_rows = my_case.size();
 
 	std::string * first_meaningful_row = nullptr;
+	std::string * prev_meaningful_row = nullptr;
 
 	for (MY_SIZE irow = 0; irow < num_rows; ++irow)
 	{
@@ -65,13 +66,14 @@ void compute(CASE & my_case)
 			{
 				first_meaningful_row = &row;
 			}
+			prev_meaningful_row = &row;
 		}
 		else
 		{
 			// Totally empty
-			if (first_meaningful_row != nullptr)
+			if (prev_meaningful_row != nullptr)
 			{
-				row = *first_meaningful_row;
+				row = *prev_meaningful_row;
 			}
 		}
 	}
