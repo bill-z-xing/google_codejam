@@ -52,9 +52,9 @@ struct COMP
 	{
 		if (a.second != b.second)
 		{
-			return a.second < b.second;
+			return a.second > b.second;
 		}
-		return a.first < b.first;
+		return a.first > b.first;
 	}
 };
 
@@ -79,7 +79,25 @@ MY_SIZE compute(const CASE & my_case)
 		}
 	}
 
+	for (auto & p : stuff.at(0))
+	{
+		bool success = true;
+		auto max = p.second;
+		auto min = p.first;
+		for (MY_SIZE i_ingred = 1; i_ingred < my_case.num_ingreds; ++i_ingred)
+		{
+			bool success = false;
+			auto & serving_list = stuff.at(i_ingred);
+			for (auto it = serving_list.begin();
+				it != serving_list.end(); ++it)
+			{
+				if (*it.first <= )
+			}
+		}
+	}
+
 	// Find common servings
+
 
 	return 0;
 }
